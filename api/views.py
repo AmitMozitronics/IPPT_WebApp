@@ -4,6 +4,7 @@ from django.core import serializers
 
 import re
 import json
+import datetime
 
 from .models import PipeData
 
@@ -12,16 +13,21 @@ def GetStringGetMethod(request):
     mid = ''
     b = ''
     c = ''
+    d = ''
+    e = ''
     ts = ''
     count = ''
     weight = ''
     ps = ''
+    site_time = ''
 
     mid = request.GET.get('a')
     b = request.GET.get('b')
     c = request.GET.get('c')
+    d = request.GET.get('d')
+    e = request.GET.get('e')
     m = request.GET.get('m')
-    if re.search(r'^[0-9]+\$[0-9]+\$[0-9]+\.[0-9]+\$\w{6,7}$', m):
+    if re.search(r'\w+\$\w+\$\w+\$\w+$', m):
         flag = 'ts'
         for i in m:
             if i == '$':
@@ -40,8 +46,10 @@ def GetStringGetMethod(request):
                     weight += i
                 else:
                     ps += i
+        if ts.isdigit():
+            site_time = datetime.datetime.fromtimestamp(int(ts)).replace(tzinfo=datetime.timezone.utc).isoformat()
     try:
-        PipeData.objects.create(mid = mid, b = b, c = c, ts = ts, count = count, weight = weight, ps = ps)
+        PipeData.objects.create(mid = mid, b = b, c = c, d = d, e = e, ts = ts, count = count, weight = weight, ps = ps, site_time = site_time)
     except Exception as e:
         print(e)
     return HttpResponse(status=200)
