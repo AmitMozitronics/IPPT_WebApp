@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" class="material-style layout-fixed">
+<!-- Mirrored from srthemesvilla.com/items/bhumlu-admin/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Nov 2019 18:29:04 GMT -->
+
+<head>
+    <style>
+        
+    </style>
+    <title>Pipe Profit Tracker | PPT</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description"
+        content="Bhumlu Bootstrap admin template made using Bootstrap 4, it has tons of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords"
+        content="Bhumlu, bootstrap admin template, bootstrap admin panel, bootstrap 4 admin template, admin template">
+    <meta name="author" content="Srthemesvilla" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- PDF & EXCEL -->
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.2.11/dist/jspdf.plugin.autotable.js"></script>
+
+    <!-- 24/03/2021/Souren--To make the table datatable----->
+    <script src="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    {% load tz %}
+
+    <!-- Icon fonts -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/open-iconic.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/feather.css' %}">
+    <!-- Core stylesheets -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/bootstrap-material.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/shreerang-material.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/uikit.css' %}">
+    <!-- Libs -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'frontend/assets/libs/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!-- <link rel="stylesheet" href="assets/libs/flot/flot.css"> -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'frontend/assets/libs/datatables/datatables.css' %}">
+</head>
+
+<body>
+    <!-- [ Preloader ] Start -->
+    <div class="page-loader">
+        <div class="bg-info"></div>
+    </div>
+    <!-- [ Preloader ] End -->
+    <!-- [ Layout wrapper ] Start -->
+    <div class="layout-wrapper layout-2">
+        <div class="layout-inner">
+            <!-- [ Layout sidenav ] Start -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark">
+                <!-- Brand demo (see assets/css/demo/demo.css) -->
+                <div class="app-brand demo">
+                    <span class="app-brand-logo demo">
+                        <!--  <img src="assets/img/logo.png" alt="Brand Logo" class="img-fluid"> -->
+                    </span>
+                    <a href="home"
+                        class="app-brand-text demo sidenav-text font-weight-normal ml-2">Pipe-Profit-Tracker</a>
+                    <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                        <i class="ion ion-md-menu align-middle"></i>
+                    </a>
+                </div>
+                <div class="sidenav-divider mt-0"></div>
+                <ul class="sidenav-inner py-1">
+                    <li class="sidenav-header small font-weight-semibold">Navigate</li>
+                    <li class="sidenav-item">
+                        <a href="#" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-map-pin"></i>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="/summaryv2" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-map-pin"></i>
+                            <div>MIS Summary</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="layout-container">
+                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-info container-p-x"
+                    id="layout-navbar">
+                    <a href="home" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <!-- <img src="assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid"> -->
+                        </span>
+                        <span
+                            class="app-brand-text demo font-weight-normal ml-2"><strong>Pipe-Profit-Tracker</strong></span>
+                    </a>
+                    <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
+                        <a class="nav-item nav-link px-0 mr-lg-4" href="javascript:">
+                            <i class="ion ion-md-menu text-large align-middle"></i>
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#layout-navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                        <hr class="d-lg-none w-100 my-2">
+                        <div class="navbar-nav align-items-lg-center ml-auto">
+                            <div class="demo-navbar-user nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
+                                        <!-- <img src="{% static 'frontend/assets/img/avatars/1.png' %}" alt class="d-block ui-w-30 rounded-circle"> -->
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{ user.get_full_name }} |
+                                            {{ user.username }}</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="feather icon-power text-danger"></i> &nbsp; Cofigure Profile</a>
+                                    <a href="/logout" class="dropdown-item">
+                                        <i class="feather icon-power text-danger"></i> &nbsp; Log Out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="layout-content">
+                    <div class="container-fluid flex-grow-1 container-p-y">
+<!--                        <h4 class="font-weight-bold py-3 mb-0" style="text-align:center;">MIS-1</h4>
+                        <h5 style="text-align:center;">RAW PIPE DATA</h5>
+-->                        
+                        <h4 class="font-weight-bold py-3 mb-0">Dashboard</h4>
+                        <ul class="sidenav-inner py-1">
+                            <li class="sidenav-header small font-weight-semibold">Navigate</li>
+                            <li class="sidenav-item">
+                                <a href="#" class="sidenav-link">
+                                    <i class="sidenav-icon feather icon-map-pin"></i>
+                                    <div>Dashboard</div>
+                                </a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a href="/summaryv2/" class="sidenav-link">
+                                    <i class="sidenav-icon feather icon-map-pin"></i>
+                                    <div>MIS Summary</div>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                                <li class="breadcrumb-item active">Data</li>
+                            </ol>
+                        </div>
+                        <div class="row">
+                            {% for i, j in machinewithstatus %}
+                            <div class="col-sm-4 col-xl-4">
+                                <div class="card card mb-4 bg-pattern bg-info text-white">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted text-white" style="color:#FFF !important;">
+                                                    Plant<span class="text-white"> Name</span></h6>
+                                                <div class="text-large">
+                                                    <h4 class="mt-3 mb-0">
+                                                        {{ i.plant_name }}
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xl-4">
+                                <div class="card card mb-4 bg-pattern bg-info text-white">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted text-white" style="color:#FFF !important;">
+                                                    Plant<span class="text-white"> Location</span></h6>
+                                                <div class="text-large">
+                                                    <h4 class="mt-3 mb-0">{{ i.plant_name.location_city }},
+                                                        {{ i.plant_name.location_state }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-xl-4">
+                                {% if time_difference <= 180 %}
+                                {{ '<div class="card card mb-4 bg-pattern bg-success text-white">' }}
+                                {% elif time_difference <= 360 %}
+                                {{ '<div class="card card mb-4 bg-pattern bg-warning text-white">' }}
+                                {% else %}
+                                {{ '<div class="card card mb-4 bg-pattern bg-danger text-white">' }}
+                                {% endif %}
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <div class="col">
+                                            <h6 class="mb-0 text-muted text-white" style="color:#FFF !important;">
+                                                Machine<span class="text-white"> ID </span></h6>
+                                            <div class="text-large">
+                                                <h4 class="mt-3 mb-0">
+                                                    <select onchange="location=this.options[this.selectedIndex].value;">
+                                                    {% for key, value in m_plant.items %}
+                                                    {% if value == curr_machine %}
+                                                    <option value="http://http://pipetrackerlive.com/v2/?id={{value}}" selected>{{value}}</option>
+                                                    {% else %}
+                                                    <option value="http://pipetrackerlive.com/v2/?id={{value}}">{{value}}</option>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                    </select>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-12">
+                                <div class="card-header with-elements">
+                                    <h6 class="card-header-title mb-0">Pipe Statistics</h6>
+                                    <div class="card-header-elements ml-auto">
+                                        <label class="text m-0">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="card-body" style="width: 100%; overflow-x: auto; overflow-y: hidden">
+            
+                                <label for="pipes">Choose a pipe type:</label>
+                                <select name="pipe" id="pipe_type">
+                                    {% for u in unique_pipe_type %}
+                                    <option val="{{u}}">{{u}}</option>
+                                    {% endfor %}
+                                </select>
+                                <div style="width: 3000px; height: 300px">
+                                <canvas id="myChart" width="0" height="900">
+                                    
+                                </canvas>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card mb-12">
+                                <div class="card-header with-elements">
+                                   <!-- <h6 class="card-header-title mb-0">Pipe Statistic Data</h6>
+                                   -->
+                    <div class="layout-content">
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                       <h4 class="font-weight-bold py-3 mb-0" style="text-align:center;">MIS-1</h4>
+                        <h5 style="text-align:center;">RAW PIPE DATA</h5>
+                    </div>
+                </div>
+                                    <div class="card-header-elements ml-auto">
+                                        <label class="text m-0">
+                                            {% if issue == "0" %}
+                                            <a class="btn btn-danger" href="/summary/summary_4?shiftdate={{ enddate }}">Fill the Material issue on {{ enddate }}</a>                      
+                                            {% endif %}
+                                            {% if duration == "0" %}
+                                            <a class="btn btn-danger" href="/summary/summary_1?shiftdate={{ enddate }}">Check the shift duration on {{ enddate }}</a>                      
+                                            {% endif %}
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <form action="{% url 'homev2' %}" method="post" id="" >
+                                        {% csrf_token %}
+                                        <label>Start Date & time:</label><br>
+                                        <input type="date" required name="startdate" id="startdate" value={{ startdate }} >
+                                        <input type="time" required name="starttime" id="starttime" value={{ starttime }} >
+                                        <br><br>
+                                        <label>End Date & time:</label><br>
+                                        <input type="date" required name="enddate" id="enddate" value={{ enddate }} >
+                                        <input type="time" required name="endtime" id="endtime" value={{ endtime }} >
+                                        <br><br>
+                                        <button class="btn btn-info" type="submit">Submit</button>
+                                    </form>
+                                    <br>
+                                    <a class="btn btn-success" id = "download_excel_check"
+                                        href="download_excel_report/?startdate={{ startdate }}&starttime={{ starttime }}&enddate={{ enddate }}&endtime={{ endtime }}">Download Report In Excel</a>
+
+                                    <div class="card-datatable table-responsive">
+                                        <table class="datatable20 table table-striped table-bordered"
+                                            id="myTable">
+                                            {% if user.username == 'vyomatesting' or user.username == 'pricepipes' %}
+                                               <thead>
+                                                <tr>
+                                                    <th style="text-align: center; vertical-align: middle;">Weighing Time</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Count</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Actual Weight (Grams)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Weight Gain/<br>Loss(Grams)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Status</th>                                                    
+                                                    <th style="text-align: center; vertical-align: middle;">Pipe Type(Description)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Outer Diameter</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Length</th>
+                                                    <th style="text-align: center; vertical-align: middle;">St Max Weight (Grams)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">St Min Weight (Grams)</th>
+
+                                                    
+                                                    
+                                                    
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in pipedata %}
+                                                <tr>
+                                                    <!--{% if ss == "local" %}
+                                                    <td>{{ i.site_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    {% elif ss == "server" %}
+                                                    {% timezone notimezone %}
+                                                    <td>{{ i.site_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    {% endtimezone %}
+                                                {% endif %}-->
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.site_local_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.count }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weight }}</td>
+                                                    {% ifequal i.weightgain 0 %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weightloss }}</td>
+                                                    {% else %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weightgain }}</td>
+                                                    {% endifequal %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.pass_status }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.basic_metarial }} {{ i.standard_type_classification }}
+                                                        {{ i.pressure_type_specification }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.outer_diameter }} {{ i.outer_diameter_unit }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.length }} {{ i.length_unit }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.maxweight }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.minweight }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+
+                                        {% else %}
+
+
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center; vertical-align: middle;">Weighing Time</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Running Count</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Actual Weight (gm)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">RM Gain/(Loss)<br>(gm)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Status</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Pipe Type(Description)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Outer Diameter<br>(mm)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">Length<br>(mtr)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">St Max Weight<br>(gm)</th>
+                                                    <th style="text-align: center; vertical-align: middle;">St Min Weight<br>(gm)</th>
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in pipedata %}
+                                                <tr>
+                                                    <!--{% if ss == "local" %}
+                                                    <td>{{ i.site_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    {% elif ss == "server" %}
+                                                    {% timezone notimezone %}
+                                                    <td>{{ i.site_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    {% endtimezone %}
+                                                {% endif %}-->
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.site_local_time|date:"M. d, Y h:i:s A" }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.count }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weight }}</td>
+                                                     {% ifequal i.weightgain 0 %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weightloss }}</td>
+                                                    {% else %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.weightgain }}</td>
+                                                    {% endifequal %}
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.pass_status }}</td> 
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.basic_metarial }} {{ i.standard_type_classification }}
+                                                        {{ i.pressure_type_specification }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.outer_diameter }} {{ i.outer_diameter_unit }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.length }} {{ i.length_unit }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.maxweight }}</td>
+                                                    <td style="text-align: center; vertical-align: middle;">{{ i.minweight }}</td>
+                                                    
+                                                   
+                                                    
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class="layout-footer footer bg-white">
+                    <div
+                        class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
+                        <div class="pt-3">
+                            <span class="footer-text font-weight-semibold">&copy; <a href="" class="footer-link"
+                                    target="_blank">Neptune Plastic</a></span>
+                        </div>
+                        <div>
+                            <a href="javascript:" class="footer-link pt-3 ml-4">Terms &amp; Conditions</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <script src="{% static 'frontend/assets/js/pace.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/bootstrap.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/sidenav.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/layout-helpers.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/material-ripple.js' %}"></script>
+    <!-- Libs -->
+    <script src="{% static 'frontend/assets/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/eve/eve.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/flot/flot.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/flot/curvedLines.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/core.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/charts.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/animated.js' %}"></script>
+    <!-- Demo -->
+    <!-- <script src="{% static 'frontend/assets/js/demo.js' %}"></script><script src="{% static 'frontend/assets/js/analytics.js' %}"></script> -->
+    <script src="{% static 'frontend/assets/libs/datatables/datatables.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/pages/tables_datatables.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/pages/dashboards_index.js' %}"></script>
+</body>
+<!--
+<script>
+    $(document).ready(function() {
+    $('#datatable20').DataTable( {
+  "ordering": false
+
+        //"order": [[ 0, "desc" ]]
+    } );
+} );
+    const startdate = document.getElementById("startdate");
+    const enddate = document.getElementById("enddate");
+    const starttime = document.getElementById("starttime");
+    const endtime = document.getElementById("endtime");
+    const date_time_validation_form = document.getElementById("date_time_validation_form");
+
+    if(date_time_validation_form)
+    {
+        date_time_validation_form.addEventListener('submit', event => {
+            var sd = startdate ? startdate.value : '';
+            var ed = enddate ? enddate.value : '';
+            var st = starttime ? starttime.value + ":00" : '';
+            var et = endtime ? endtime.value + ":59" : '';
+            try
+            {
+                if(new Date(sd + ' ' + st).getTime() > new Date(ed + ' ' + et).getTime())
+                {
+                    event.preventDefault();
+                    alert("Start DateTime can not greater than End DateTime");
+                } else if((new Date(enddate.value).getTime() - new Date(startdate.value).getTime()) / 86400000 > 7)
+                {
+                    if(!confirm("Need too much time to calculate. Are you sure?"))
+                        event.preventDefault();
+                }
+            } catch (ex)
+            {
+                console.log(ex);
+            }
+        });
+    }
+
+    function checkDateTime() {
+        // body...
+        document.getElementById("startdate").required;
+    }
+
+</script>
+-->
+<!--24/03/2021---to make the table DataTable-----
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable({
+        "order":[[0,'desc']]
+    });
+} );
+</script>
+-->
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js"></script>
+<script>
+    $(document).ready(function () {
+    // ......
+    $.fn.dataTable.moment('MMM. D, YYYY HH:mm:ss A');
+    // And any format you need
+    $('#myTable').DataTable({
+         "order": [[ 0, "desc" ]]
+    });
+});
+</script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+ 
+<script>
+var j_data = JSON.parse("{{g_json|escapejs}}");
+console.log(j_data)
+var pipeType=[];
+var pipe_weight=[];
+//ht_pipe = document.getElementById("pipe_type")
+
+
+  
+const areaSelect = document.querySelector(`[id="pipe_type"]`);
+var value = areaSelect[0].value;
+for(var x in j_data){
+    
+    var pipe=x;
+    console.log("pipe--", x);
+    if (toString(value)==toString(pipe)){
+    time = j_data[x][0];
+    weight = j_data[x][1];
+    console.log("dsknffkjd")
+  var ctx = document.getElementById("myChart");    
+  var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: time,
+    datasets:[
+    {
+        data: weight,
+        label: pipe,
+        borderColor: "#3e95cd",
+        fill: false
+    }
+    ]
+  },
+  options: {
+      responsive: true,
+      scales: {
+        xAxes: [ {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          },
+          ticks: {
+            major: {
+              fontStyle: 'bold',
+              fontColor: '#FF0000'
+            }
+          }
+        } ],
+        yAxes: [ {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Weight'
+          }
+        } ]
+      }
+    }
+});
+}
+    //ht_pipe.innerHTML += "<option value=\""+ x +"\">"+x+"</option>";
+
+}
+areaSelect.addEventListener(`change`, (e) => {
+  // log(`e.target`, e.target);
+  const select = e.target;
+  const value = select.value;
+  const desc = select.options[select.selectedIndex].text;
+  console.log(value);
+
+for(var x in j_data){
+    
+    var pipe=x;
+    console.log(x);
+    if (value==pipe){
+    time = j_data[x][0];
+    weight = j_data[x][1];
+    console.log("dsknffkjd")
+  var ctx = document.getElementById("myChart");    
+  var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: time,
+    datasets:[
+    {
+        data: weight,
+        label: pipe,
+        borderColor: "#3e95cd",
+        fill: true
+    }
+    ]
+  },
+  options: {
+      responsive: true,
+      scales: {
+        xAxes: [ {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          },
+          ticks: {
+            major: {
+              fontStyle: 'bold',
+              fontColor: '#FF0000'
+            }
+          }
+        } ],
+        yAxes: [ {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Weight'
+          }
+        } ]
+      }
+    }
+});
+}
+    //ht_pipe.innerHTML += "<option value=\""+ x +"\">"+x+"</option>";
+
+}
+
+});
+
+
+
+/*
+var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+// For drawing the lines
+var africa = [86,114,106,106,107,111,133,221,783,2478];
+var asia = [282,350,411,502,635,809,947,1402,3700,5267];
+var europe = [168,170,178,190,203,276,408,547,675,734];
+var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
+var northAmerica = [6,3,2,2,7,26,82,172,312,433];
+
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: years,
+    datasets: [
+      { 
+        data: africa,
+        borderColor: "#3e95cd",
+        fill: true
+      },
+      { 
+  data: asia,
+  label: "Asia",
+  borderColor: "#3e95cd",
+  fill: false
+},
+{ 
+  data: europe,
+  label: "Europe",
+  borderColor: "#3e95cd",
+  fill: false
+},
+{ 
+  data: latinAmerica,
+  label: "Latin America",
+  borderColor: "#3e95cd",
+  fill: false
+},
+{ 
+  data: northAmerica,
+  label: "North America",
+  borderColor: "#3e95cd",
+  fill: false
+}
+    ]
+  }
+});
+*/
+</script>
+
+</html>

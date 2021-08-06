@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify your pipe</title>
+    <style >
+        div img {display: block;margin-left: auto;margin-right: auto;}
+        /*div.mfd {margin-left: 700px;}*/
+        @media (max-width: 480px) {
+    .content{
+       margin-left: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    .content{
+       margin-left: 10px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <div>
+        <img src="https://secureservercdn.net/166.62.110.72/ijv.d67.myftpupload.com/wp-content/uploads/2020/08/cropped-logo-140x70.png">
+        <!--<img src="https://supreme.co.in/plastic-piping-system/wp-content/uploads/2017/10/cropped-logo.png">-->
+    </div>
+    <div class="mfd">
+        {% if code != 'Not Found' %}
+        <h3>Your pipe is veryfied by Neptue Plastic.</h3>
+        <h4>Your pipe code is: {{code}}</h4>
+        <h4>Manufacture Date: {{mfd_date}} </h4>
+        {% elif code == 'Not Found' %}
+        <h3>Your pipe is not veryfied by Neptue Plastic.</h3>
+        
+        <h4>Your pipe code is Not Avaliable</h4>
+        <h4>Manufacture Date: Not Avaliable </h4>
+        {% endif %}
+        
+    </div>
+</body>
+</html>

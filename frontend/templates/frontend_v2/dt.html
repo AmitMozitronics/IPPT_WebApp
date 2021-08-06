@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>CHECK DATE TIME</title>
+    </head>
+
+    <body>
+        <table>
+            <thead>
+                <tr>
+                    <th>WEIGHT</th>
+                    <th>DATE TIME</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for i in dt%}
+                <tr>
+                    <td>{{i.weight}}</td>
+                    {% load tz %}
+                    {% get_current_timezone as TIME_ZONE %}
+                    {% timezone TIME_ZONE %}
+                    <td>{{i.current_dt}}</td>
+                    {% endtimezone %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
+
+    

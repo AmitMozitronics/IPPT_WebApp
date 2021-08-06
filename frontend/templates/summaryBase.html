@@ -1,0 +1,355 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="material-style layout-fixed">
+<!-- Mirrored from srthemesvilla.com/items/bhumlu-admin/default/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 08 Nov 2019 18:29:04 GMT -->
+
+<head>
+    <title>Pipe Profit Tracker | PPT</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description"
+        content="Bhumlu Bootstrap admin template made using Bootstrap 4, it has tons of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords"
+        content="Bhumlu, bootstrap admin template, bootstrap admin panel, bootstrap 4 admin template, admin template">
+    <meta name="author" content="Srthemesvilla" />
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <!-- Icon fonts -->
+
+    <!-- PDF & EXCEL -->
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
+    <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable@3.2.11/dist/jspdf.plugin.autotable.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/ionicons.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/linearicons.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/open-iconic.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/pe-icon-7-stroke.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/fonts/feather.css' %}">
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/bootstrap-material.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/shreerang-material.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/assets/css/uikit.css' %}">
+    <!-- Libs -->
+
+    <link rel="stylesheet" href="{% static 'frontend/assets/libs/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!-- <link rel="stylesheet" href="assets/libs/flot/flot.css"> -->
+
+    <link rel="stylesheet" href="{% static 'frontend/assets/libs/datatables/datatables.css' %}">
+
+    <script src="{% static 'frontend/assets/js/jquery-3.3.1.min.js' %}"></script>
+</head>
+
+<body>
+    <!-- [ Preloader ] Start -->
+    <div class="page-loader">
+        <div class="bg-info"></div>
+    </div>
+    <!-- [ Preloader ] End -->
+    <!-- [ Layout wrapper ] Start -->
+    <div class="layout-wrapper layout-2">
+        <div class="layout-inner">
+            <!-- [ Layout sidenav ] Start -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-dark">
+                <!-- Brand demo (see assets/css/demo/demo.css) -->
+                <div class="app-brand demo">
+                    <span class="app-brand-logo demo">
+                        <!--  <img src="assets/img/logo.png" alt="Brand Logo" class="img-fluid"> -->
+                    </span>
+                    <a href="home"
+                        class="app-brand-text demo sidenav-text font-weight-normal ml-2">Pipe-Profit-Tracker</a>
+                    <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                        <i class="ion ion-md-menu align-middle"></i>
+                    </a>
+                </div>
+                <div class="sidenav-divider mt-0"></div>
+                <!-- Links -->
+                <ul class="sidenav-inner py-1">
+                    <!-- Dashboards -->
+                    <li class="sidenav-header small font-weight-semibold">Navigate</li>
+                    <li class="sidenav-item">
+                        <a href="/home" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-map-pin"></i>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="/summary" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-map-pin"></i>
+                            <div>MIS Summary</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- [ Layout sidenav ] End -->
+            <!-- [ Layout container ] Start -->
+            <div class="layout-container">
+                <!-- [ Layout navbar ( Header ) ] Start -->
+                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-info container-p-x"
+                    id="layout-navbar">
+                    <!-- Brand demo (see assets/css/demo/demo.css) -->
+                    <a href="home" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <!-- <img src="assets/img/logo-dark.png" alt="Brand Logo" class="img-fluid"> -->
+                        </span>
+                        <span
+                            class="app-brand-text demo font-weight-normal ml-2"><strong>Pipe-Profit-Tracker</strong></span>
+                    </a>
+                    <!-- Sidenav toggle (see assets/css/demo/demo.css) -->
+                    <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
+                        <a class="nav-item nav-link px-0 mr-lg-4" href="javascript:">
+                            <i class="ion ion-md-menu text-large align-middle"></i>
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#layout-navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                        <!-- Divider -->
+                        <hr class="d-lg-none w-100 my-2">
+                        <div class="navbar-nav align-items-lg-center ml-auto">
+                            <div class="demo-navbar-user nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                    <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
+                                        <!-- <img src="{% static 'frontend/assets/img/avatars/1.png' %}" alt class="d-block ui-w-30 rounded-circle"> -->
+                                        <span class="px-1 mr-lg-2 ml-2 ml-lg-0">{{ user.get_full_name }} |
+                                            {{ user.username }}</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item">
+                                        <i class="feather icon-power text-danger"></i> &nbsp; Configure Profile</a>
+
+                                    <a href="/logout" class="dropdown-item">
+                                        <i class="feather icon-power text-danger"></i> &nbsp; Log Out</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <!-- [ Layout navbar ( Header ) ] End -->
+                <!-- [ Layout content ] Start -->
+                <div class="layout-content">
+                    <!-- [ content ] Start -->
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <h4 class="font-weight-bold py-3 mb-0">{{ summary_name }}</h4>
+                        <ul class="sidenav-inner py-1">
+                            <!-- Dashboards -->
+                            <li class="sidenav-header small font-weight-semibold">Navigate</li>
+                            <li class="sidenav-item">
+                                <a href="/home" class="sidenav-link">
+                                    <i class="sidenav-icon feather icon-map-pin"></i>
+                                    <div>Dashboard</div>
+                                </a>
+                            </li>
+                            <li class="sidenav-item">
+                                <a href="/summary" class="sidenav-link">
+                                    <i class="sidenav-icon feather icon-map-pin"></i>
+                                    <div>MIS Summary</div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="text-muted small mt-0 mb-4 d-block breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">Library</a></li>
+                                <li class="breadcrumb-item active">Data</li>
+                            </ol>
+                        </div>
+                        <div class="row">
+                            {% for i in machine %}
+                            <div class="col-sm-6 col-xl-6">
+                                <div class="card card mb-4 bg-pattern bg-info text-white">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted text-white" style="color:#FFF !important;">
+                                                    Plant<span class="text-white"> Name</span></h6>
+                                                <div class="text-large">
+                                                    <h4 class="mt-3 mb-0">
+                                                        {{ i.plant_name }}
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xl-6">
+                                <div class="card card mb-4 bg-pattern bg-info text-white">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center">
+                                            <div class="col">
+                                                <h6 class="mb-0 text-muted text-white" style="color:#FFF !important;">
+                                                    Plant<span class="text-white"> Location</span></h6>
+                                                <div class="text-large">
+                                                    <h4 class="mt-3 mb-0">{{ i.plant_name.location_city }},
+                                                        {{ i.plant_name.location_state }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <hr>
+
+
+
+                        {% block content %}
+                        {% endblock %}
+                
+
+
+
+
+                    </div>
+                    <!-- [ content ] End -->
+                    <!-- [ Layout footer ] Start -->
+                    <nav class="layout-footer footer bg-white">
+                        <div
+                            class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
+                            <div class="pt-3">
+                                <span class="footer-text font-weight-semibold">&copy; <a href="" class="footer-link"
+                                        target="_blank">Neptune Plastic</a></span>
+                            </div>
+                            <div>
+                                <a href="javascript:" class="footer-link pt-3 ml-4">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- [ Layout footer ] End -->
+                </div>
+                <!-- [ Layout content ] Start -->
+            </div>
+            <!-- [ Layout container ] End -->
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+    <!-- [ Layout wrapper] End -->
+    <!-- Core scripts -->
+    <script src="{% static 'frontend/assets/js/pace.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/popper/popper.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/bootstrap.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/sidenav.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/layout-helpers.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/material-ripple.js' %}"></script>
+    <!-- Libs -->
+    <script src="{% static 'frontend/assets/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/eve/eve.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/flot/flot.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/flot/curvedLines.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/core.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/charts.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/chart-am4/animated.js' %}"></script>
+    <!-- Demo -->
+    <!-- <script src="{% static 'frontend/assets/js/demo.js' %}"></script><script src="{% static 'frontend/assets/js/analytics.js' %}"></script> -->
+    <script src="{% static 'frontend/assets/js/pages/dashboards_index.js' %}"></script>
+    <script src="{% static 'frontend/assets/libs/datatables/datatables.js' %}"></script>
+    <script src="{% static 'frontend/assets/js/pages/tables_datatables.js' %}"></script>
+
+
+    <script>
+        const startdate = document.getElementById("startdate");
+        const enddate = document.getElementById("enddate");
+        const starttime = document.getElementById("starttime");
+        const endtime = document.getElementById("endtime");
+        const date_time_validation_form = document.getElementById("date_time_validation_form");
+    
+        if(date_time_validation_form)
+        {
+            date_time_validation_form.addEventListener('submit', event => {
+                var sd = startdate ? startdate.value : '';
+                var ed = enddate ? enddate.value : '';
+                var st = starttime ? starttime.value + ":00" : '';
+                var et = endtime ? endtime.value + ":59" : '';
+                try
+                {
+                    if(new Date(sd + ' ' + st).getTime() > new Date(ed + ' ' + et).getTime())
+                    {
+                        event.preventDefault();
+                        alert("Start DateTime can not greater than End DateTime");
+                    } 
+                } catch (ex)
+                {
+                    console.log(ex);
+                }
+            });
+        }
+    </script>
+
+
+    <script>
+        //const pdfexceltable = document.getElementById("pdfexceltable");
+        //const makePDF = document.getElementById("makePDF").addEventListener('click', () => {
+        //  const doc = new jsPDF();
+        //doc.autoTable({ html: '#pdfexceltable' });
+        //doc.save('export.pdf');
+        //});
+        const tablesToExcel = (function () {
+            var uri = 'data:application/vnd.ms-excel;base64,'
+                , tmplWorkbookXML = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">'
+                    + '<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office"><Author>Axel Richter</Author><Created>{created}</Created></DocumentProperties>'
+                    + '<Styles>'
+                    + '<Style ss:ID="Currency"><NumberFormat ss:Format="Currency"></NumberFormat></Style>'
+                    + '<Style ss:ID="Date"><NumberFormat ss:Format="Medium Date"></NumberFormat></Style>'
+                    + '</Styles>'
+                    + '{worksheets}</Workbook>'
+                , tmplWorksheetXML = '<Worksheet ss:Name="{nameWS}"><Table>{rows}</Table></Worksheet>'
+                , tmplCellXML = '<Cell{attributeStyleID}{attributeFormula}><Data ss:Type="{nameType}">{data}</Data></Cell>'
+                , base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+                , format = function (s, c) { return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; }) }
+            return function (tables, wsnames, wbname, appname) {
+                var ctx = "";
+                var workbookXML = "";
+                var worksheetsXML = "";
+                var rowsXML = "";
+                for (var i = 0; i < tables.length; i++) {
+                    if (!tables[i].nodeType) tables[i] = document.getElementById(tables[i]);
+                    for (var j = 0; j < tables[i].rows.length; j++) {
+                        rowsXML += '<Row>'
+                        for (var k = 0; k < tables[i].rows[j].cells.length; k++) {
+                            var dataType = tables[i].rows[j].cells[k].getAttribute("data-type");
+                            var dataStyle = tables[i].rows[j].cells[k].getAttribute("data-style");
+                            var dataValue = tables[i].rows[j].cells[k].getAttribute("data-value");
+                            dataValue = (dataValue) ? dataValue : tables[i].rows[j].cells[k].innerHTML;
+                            var dataFormula = tables[i].rows[j].cells[k].getAttribute("data-formula");
+                            dataFormula = (dataFormula) ? dataFormula : (appname == 'Calc' && dataType == 'DateTime') ? dataValue : null;
+                            ctx = {
+                                attributeStyleID: (dataStyle == 'Currency' || dataStyle == 'Date') ? ' ss:StyleID="' + dataStyle + '"' : ''
+                                , nameType: (dataType == 'Number' || dataType == 'DateTime' || dataType == 'Boolean' || dataType == 'Error') ? dataType : 'String'
+                                , data: (dataFormula) ? '' : dataValue
+                                , attributeFormula: (dataFormula) ? ' ss:Formula="' + dataFormula + '"' : ''
+                            };
+                            rowsXML += format(tmplCellXML, ctx);
+                        }
+                        rowsXML += '</Row>'
+                    }
+                    ctx = { rows: rowsXML, nameWS: wsnames[i] || 'Sheet' + i };
+                    worksheetsXML += format(tmplWorksheetXML, ctx);
+                    rowsXML = "";
+                }
+                ctx = { created: (new Date()).getTime(), worksheets: worksheetsXML };
+                workbookXML = format(tmplWorkbookXML, ctx);
+                var link = document.createElement("A");
+                link.href = uri + base64(workbookXML);
+                link.download = wbname || 'Workbook.xls';
+                link.target = '_blank';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        })(); 
+    </script>
+
+</body>
+
+</html>

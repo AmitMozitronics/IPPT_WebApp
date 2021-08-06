@@ -1,0 +1,205 @@
+nav{
+    background: rgba(255 255 255 / 0.9);
+}
+a.nav-link{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;
+    color: #32a883;
+    /*ed3237;*/
+    /*text-transform: uppercase;*/
+    letter-spacing: 2px;
+    margin-right: 1.25em;
+    font-size: 1.25em;
+    position: relative;
+    transition: 0.3s ease;
+}
+a.nav-link::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    /* background: #ed3237; */
+    border-bottom: 1px solid #32a883;
+    transition: 0.3s ease;
+    transform: scaleX(0);
+    transition-property: transform;
+    transform-origin: left;
+    z-index: -1;
+}
+a.nav-link::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    /* background: #ed3237; */
+    border-top: 1px solid #32a883;
+    transition: 0.3s ease;
+    transform: scaleX(0);
+    transition-property: transform;
+    transform-origin: right;
+    z-index: -1;
+}
+a.nav-link:hover::before{
+    transform: scaleX(1);
+}
+a.nav-link:hover::after{
+    transform: scaleX(1);
+}
+/* a.nav-link:hover{
+    color: #fff !important;
+} */
+#banner{
+    height: 100vh;
+    background: url(../img/bisleri.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;padding: 4em 0;
+}
+.banner-overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #fff, transparent);
+    padding: 6em 0;
+}
+.blur-ovrly{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+}
+.box{
+    width: 100%;
+    padding: 3em 1em 1em 1em;
+    border-radius: 10px;
+    background: transparent;
+    position: relative;
+    background: rgb(234 234 234 / 80%);
+}
+.box::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    background: #333;
+    width: 100%;
+    height: 9%;
+}
+h1{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    color: #777;
+    font-size: 1.125em;
+    line-height: 2em;
+    margin-top: 0.25em;
+    letter-spacing: 2px;
+    /*text-transform: uppercase;*/
+}
+.flex-row{
+    background: #fff;
+    border-radius: 5px;
+    margin: 1em auto;
+    box-shadow: 0px 3px 15px rgba(0 0 0 / 0.15);
+}
+.circle{
+    width: 15px;
+    height: 15px;
+    background: rgb(79, 255, 63);
+    border-radius: 50%;
+    position: absolute;
+    top: 3%;
+    right: 7%;
+    z-index: 9;
+}
+.circle::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: rgb(255, 67, 67);
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    left: 135%;
+}
+.circle::after{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background: rgb(255, 252, 73);
+    border-radius: 50%;
+    position: absolute;
+    top: 0%;
+    left: -135%;
+}
+.cText .icoBox{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #0d9e00;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translate(0,-50%);
+}
+.cText .icoBox i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #0d9600;
+}
+.cText{
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: 1em auto;
+    border-radius: 50px;
+    border: 2px solid #0d9600;
+}
+.cText h1{
+    color: #0d9600;
+    margin-left: 42px;
+    margin-top: 8px;
+}
+.dText .icoBox{
+    width: 30px;
+    height: 30px;
+    border: 2px solid #ff0000;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 1%;
+    transform: translate(0,-50%);
+}
+.dText .icoBox i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #ff0000;
+}
+.dText{
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: 1em auto;
+    border-radius: 50px;
+    border: 2px solid #ff0000;
+}
+.dText h1{
+    color: #ff0000;
+    margin-left: 42px;
+    margin-top: 8px;
+}

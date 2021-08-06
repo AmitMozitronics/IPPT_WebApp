@@ -1,0 +1,68 @@
+{% extends 'summaryBase.html' %}
+
+{% block content %}
+
+
+<div class="row">
+    <!-- 1st row Start -->
+    <div class="col-lg-12">
+        <div class="card mb-12">
+            <div class="card-header with-elements">
+                <h6 class="card-header-title mb-0"></h6>
+                <div class="card-header-elements ml-auto">
+                    <label class="text m-0">
+                    </label>
+                </div>
+            </div>
+            <div class="card-body">
+                <br><br>
+                <form action="" method="get" id="date_time_validation_form">
+                    <label>Start Date & time</label>
+                    <input type="date" name="startdate" id="startdate" value={{ startdate }} required>
+                    <input type="time" name="starttime" id="starttime" value={{ starttime }} required>
+                    <br>
+                    <label>End Date & time</label>
+                    <input type="date" name="enddate" id="enddate" value={{ enddate }} required>
+                    <input type="time" name="endtime" id="endtime" value={{ endtime }} required>
+                    <br>
+                    <button class="btn btn-info" type="submit">Submit</button>
+                </form>
+                <br><br>
+                <!-- <button class="btn btn-info" id="makePDF">Download as PDF</button> -->
+                <button class="btn btn-success"
+                    onclick="tablesToExcel(['pdfexceltable'], ['SIZE_WISE_LENGTH'], 'SIZE_WISE_LENGTH_{{ startdate }}_{{ starttime }}_to_{{ enddate }}_{{ endtime }}.xls', 'Excel')">Download
+                    as Excel</button>
+                <div class="card-datatable table-responsive">
+                    <table class="table table-striped table-bordered" id="pdfexceltable">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>PIPE</th>
+                                <th>Size</th>
+                                <th>Length</th>
+                                <th>Total Count (in Nos)</th>
+                                <th>Total Length (m)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in sizewiselength %}
+                            <tr>
+                                <td>{{ i.group_day|date:"d/m/Y" }}</td>
+                                <td>{{ i.basic_metarial }} {{ i.standard_type_classification }}
+                                    {{ i.pressure_type_specification }}</td>
+                                <td>{{ i.outer_diameter|floatformat:2 }} {{ i.outer_diameter_unit }}</td>
+                                <td>{{ i.length|floatformat:2 }} {{ i.length_unit }}</td>
+                                <td>{{ i.weight__count }}</td>
+                                <td>{{ i.length__sum|floatformat:2 }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 1st row Start -->
+</div>
+
+{% endblock %}

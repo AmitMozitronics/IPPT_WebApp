@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        {% load static %}
+        {% load tz %}
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    </head>
+    <body>
+        <table class="datatable20" id="datatable20">
+            <thead>
+                <tr>
+                    <th>Weighing Time</th>
+                    <th>Count</th>
+                    <th>Weight (Gram)</th>
+                    <th>Weight Gain (Gram)</th>
+                    <th>Status</th>
+                    <th>Pipe Type</th>
+                    <th>Outer Diameter</th>
+                    <th>Length</th>
+                    
+                    
+                    <th>Max Weight (Gram)</th>
+                    <th>Min Weight (Gram)</th>
+                    
+                    
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in pipedata %}
+                    <tr>
+                        {% if ss == "local" %}
+                            <td>{{ i.site_time|date:"l, F d, Y h:i:s A" }}</td>
+                            {% elif ss == "server" %}
+                            {% timezone notimezone %}
+                            <td>{{ i.site_time|date:"l, F d, Y h:i:s A" }}</td>
+                        {% endtimezone %}
+                    {% endif %}
+                    <td>{{ i.count }}</td>
+                    <td>{{ i.weight }}</td>
+                    {% ifequal i.weightgain 0 %}
+                        <td>{{ i.weightloss }}</td>
+                    {% else %}
+                        <td>{{ i.weightgain }}</td>
+                    {% endifequal %}
+                    <td>{{ i.pass_status }}</td>
+                    <td>{{ i.basic_metarial }} {{ i.standard_type_classification }}
+                    {{ i.pressure_type_specification }}</td>
+                    <td>{{ i.outer_diameter }} {{ i.outer_diameter_unit }}</td>
+                    <td>{{ i.length }} {{ i.length_unit }}</td>
+                    
+                    
+                    <td>{{ i.maxweight }}</td>
+                    <td>{{ i.minweight }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<script type="text/javascript">
+    $(document).ready( function () {
+    $('#datatable20').DataTable(
+        {
+  "ordering": false
+});
+} );
+</script>
+</body>
+
+</html>

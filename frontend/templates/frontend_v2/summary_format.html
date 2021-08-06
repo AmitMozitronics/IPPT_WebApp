@@ -1,0 +1,275 @@
+{% extends 'summaryBasev2.html' %}
+
+{% block content %}
+
+
+<div class="row">
+    <!-- 1st row Start -->
+    <div class="col-lg-12">
+        <div class="card mb-12">
+            <div class="card-header with-elements">
+                <h6 class="card-header-title mb-0">Pipe Summary</h6>
+                <div class="card-header-elements ml-auto">
+                    <label class="text m-0">
+
+                    </label>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <form action="" method="post" id="summaryFormatForm">
+                    {% csrf_token %}
+                    <input type="text" value={{ summarytype }} hidden>
+                    <label>Format:</label>
+                    <select class="btn" id="viewformat" name="viewformat" required>
+                        <option value="" selected disabled>Select Any Format</option>
+                        <option value="Year">Year</option>
+                        <option value="Quarter">Quarter</option>
+                        <option value="Month">Month</option>
+                        <option value="Week">Week</option>
+                        <option value="Day">Day</option>
+                    </select>
+                    <br><br><br>
+                    <div id="DayFormat" hidden>
+                        <label>Start Date</label>
+                        <input type="date" id="startdate" name="startdate" onchange="check_day_none()">
+                        <br>
+                        <label>End Date</label>
+                        <input type="date" id="enddate" name="enddate" onchange="check_day_none()">
+                    </div>
+                    <div id="WeekFormat" hidden>
+                        <label>Start Week</label>
+                        <input type="date" id="startweek" onchange="check_week_none()">
+                        <strong>(Select any date; It will automatically select first day of the week)</strong>
+                        <br>
+                        <label>End Week</label>
+                        <input type="date" id="endweek" onchange="check_week_none()">
+                        <strong>(Select any date; It will automatically select last day of the week)</strong>
+                        
+                    </div>
+                    <div id="MonthFormat" hidden>
+                        <label>Select Month</label>
+                        <input type="date" id="selmonth" onchange="check_month_none()">
+                        <strong>(Select any date; It will automatically select first day of Month)</strong>
+                    </div>
+                    <div id="QuarterFormat" hidden>
+                        <label>Select Quarter</label>
+                        <select class="btn" id="qinput" onchange="check_for_none()">
+                            <option selected value="">Select</option>
+                            <option value="01-0103-31">January-March</option>
+                            <option value="04-0106-30">April-June</option>
+                            <option value="07-0109-30">July-September</option>
+                            <option value="10-0112-31">October-December</option>
+                        </select>
+                        <label>Select Year</label>
+                        <select class="btn" id="qyinput"></select>
+                    </div>
+                    <div id="YearFormat" hidden>
+                        <label>Select Year</label>
+                        <select class="btn" id="yinput">
+                            <option selected value="">Select</option>
+                        </select>
+                    </div>
+                    <br>
+                    <button style="display:none;" class="btn btn-info" id="sb" type="submit">Submit</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 1st row Start -->
+</div>
+
+<script>
+ //var x=document.getElementsByClassName("container-fluid flex-grow-1 container-p-y")[0].getElementsByTagName("h4")[0];
+ //x.innerHTML="MIS-4: PIPE COUNT SUMMARY REPORT ";
+</script>
+
+<script>
+
+
+
+    const getMonday = d => {
+        d = new Date(d);
+        var day = d.getDay(),
+            diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+        return new Date(d.setDate(diff));
+    }
+    const getSunday = (date, days = 6) => {
+        date = getMonday(date);
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+
+    }
+
+    const startweek = document.getElementById("startweek");
+    const endtweek = document.getElementById("endweek");
+    const selmonth = document.getElementById("selmonth");
+    const qinput = document.getElementById('qinput');
+    const qyinput = document.getElementById('qyinput');
+    const yinput = document.getElementById('yinput');
+
+    const viewformat = document.getElementById("viewformat");
+    const summaryFormatForm = document.getElementById('summaryFormatForm');
+
+    startweek.addEventListener('change', () => {
+        startdate.valueAsDate = startweek.valueAsDate = getMonday(startweek.value);
+    });
+    endweek.addEventListener('change', () => {
+        enddate.valueAsDate = endweek.valueAsDate = getSunday(endweek.value);
+    });
+    selmonth.addEventListener('change', () => {
+        var d = selmonth.valueAsDate;
+        startdate.valueAsDate = selmonth.valueAsDate = new Date(d.getFullYear(), d.getMonth(), 2);
+        enddate.valueAsDate = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+    });
+    for (i = 1970; i < new Date().getFullYear(); i++) {
+        qyinput.innerHTML += `<option value="${i}">${i}</option>`;
+        yinput.innerHTML += `<option value="${i}">${i}</option>`;
+    }
+    qyinput.innerHTML += `<option value="${i}" selected>${i}</option>`;
+    yinput.innerHTML += `<option value="${i}" selected>${i}</option>`;
+    for (i ++; i <= 2050; i++) {
+        qyinput.innerHTML += `<option value="${i}">${i}</option>`;
+        yinput.innerHTML += `<option value="${i}">${i}</option>`;
+    }
+
+
+    viewformat.addEventListener('change', () => {
+        // if (viewformat.value === "Year"){
+        //     alert(viewformat.value);
+        //     $("#sb").css('display','block');
+        // }
+        switch (viewformat.value) {
+            case "Year":
+                $("#sb").css('display','block');
+                break;
+            case "Quarter":
+                $("#sb").css('display','none');
+                break;
+            //case "Month":
+                //alert("hi");
+                //alert(selmonth.value);
+                //var today = moment().format('YYYY-MM-DD');
+                //document.getElementById('selmonth').value = today();
+                //break;
+            default:
+                // statements_def
+                break;
+        }
+        startdate.value = "";
+        enddate.value = "";
+        document.getElementById("DayFormat").hidden = true;
+        document.getElementById("WeekFormat").hidden = true;
+        document.getElementById("MonthFormat").hidden = true;
+        document.getElementById("QuarterFormat").hidden = true;
+        document.getElementById("YearFormat").hidden = true;
+        document.getElementById(viewformat.value + "Format").hidden = false;
+
+        
+    });
+
+    
+
+    function check_for_none(){
+        //alert(qinput.value);
+        if (qinput.value != ''){
+            $("#sb").css('display','block');
+            summaryFormatForm.addEventListener('submit', event => {
+            if (viewformat.value === 'Quarter') {
+                startdate.value = qyinput.value + '-' + qinput.value.slice(0, 5);
+                enddate.value = qyinput.value + '-' + qinput.value.slice(5, 10);
+            } else if (viewformat.value === 'Year') {
+                startdate.value = yinput.value + "-01-01";
+                enddate.value = yinput.value + "-12-31";
+            }
+            var sd = startdate ? startdate.value : '';
+            var ed = enddate ? enddate.value : '';
+            try {
+                if (new Date(sd).getTime() > new Date(ed).getTime()) {
+                    event.preventDefault();
+                    alert("Start Date can not greater than End Date");
+                } else if ((new Date(enddate.value).getTime() - new Date(startdate.value).getTime()) / 86400000 > 180 && (viewformat.value === 'Day' || viewformat.value === 'Week')) {
+                    if (!confirm("Need too much time to calculate. Are you sure?"))
+                        event.preventDefault();
+                }
+            }
+            catch (ex) {
+                alert(ex);
+            
+         }
+        });
+    }
+    else{
+        $("#sb").css('display','none');
+    }
+}
+
+    function check_month_none(){
+        $("#sb").css('display','block');
+    }
+
+    function check_week_none(){
+        if (startweek.value != ""){
+            if (endweek.value != ""){
+                $("#sb").css('display','block');
+            }
+            else{
+                $("#sb").css('display','none');
+            }
+        }
+        else{
+            $("#sb").css('display','none');
+        }
+    }
+
+    function check_day_none(){
+        if (startdate.value != ""){
+            if (enddate.value != ""){
+                $("#sb").css('display','block');
+            }
+            else{
+                $("#sb").css('display','none');
+            }
+        }
+
+        else{
+            $("#sb").css('display','none');
+        }
+    }
+summaryFormatForm.addEventListener('submit', event => {
+        if (viewformat.value === 'Quarter') {
+            startdate.value = qyinput.value + '-' + qinput.value.slice(0, 5);
+            enddate.value = qyinput.value + '-' + qinput.value.slice(5, 10);
+        } else if (viewformat.value === 'Year') {
+            startdate.value = yinput.value + "-01-01";
+            enddate.value = yinput.value + "-12-31";
+        }
+        var sd = startdate ? startdate.value : '';
+        var ed = enddate ? enddate.value : '';
+        try {
+            if (new Date(sd).getTime() > new Date(ed).getTime()) {
+                event.preventDefault();
+                alert("Start Date can not greater than End Date");
+            } else if ((new Date(enddate.value).getTime() - new Date(startdate.value).getTime()) / 86400000 > 180 && (viewformat.value === 'Day' || viewformat.value === 'Week')) {
+                if (!confirm("Need too much time to calculate. Are you sure?"))
+                    event.preventDefault();
+            }
+        }
+        catch (ex) {
+            alert(ex);
+        }
+    });
+    
+</script>
+
+
+{% if message %}
+<script>alert("{{ message }}");</script>
+
+
+{% endif %}
+
+
+{% endblock %}

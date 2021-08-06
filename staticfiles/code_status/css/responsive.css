@@ -1,0 +1,64 @@
+@media(max-width:576px) {
+    .dText .icoBox {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #32a883;
+        margin: 0 auto;
+        border-radius: 50%;
+        position: absolute;
+        top: 33%;
+        left: 2%;
+        transform: translate(0, -50%);
+    }
+
+    .cText .icoBox {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #32a883;
+        margin: 0 auto;
+        border-radius: 50%;
+        position: absolute;
+        top: 33%;
+        left: 2%;
+        transform: translate(0, -50%);
+    }
+
+    .dText {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin: 1em auto;
+        border-radius: 10px;
+        border: 2px solid #ff0000;
+        padding: 0 1px;
+    }
+
+    .cText {
+        display: flex;
+        width: 100%;
+        position: relative;
+        margin: 1em auto;
+        border-radius: 10px;
+        border: 2px solid #0d9600;
+        padding: 0 1px;
+    }
+
+    #banner {
+        background: url(https://www.bisleri.com/sites/default/files/styles/product_listing/public/2020-03/960-x-615-bisleri.jpg?itok=CRHKiefY);
+        background-size: contain;
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        height: 103vh;
+    }
+
+    h1 {
+        font-family: 'PT Sans', sans-serif;
+        font-weight: 700;
+        color: #777;
+        font-size: 1em;
+        line-height: 1.25em;
+        margin-top: 0.25em;
+        letter-spacing: 2px;
+        /*text-transform: uppercase;*/
+    }
+}
